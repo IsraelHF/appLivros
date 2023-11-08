@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Lista de Livros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-searchbar [(ngModel)]="searchTitle" (ionChange)="search()"></ion-searchbar>
+  <!-- <ion-searchbar [(ngModel)]="searchAuthor" (ionChange)="search()"></ion-searchbar> -->
+
+  <ion-list>
+    <ion-item button *ngFor="let item of (result | async)">
+      <ion-avatar slot="start"> 
+        <img [src]="item.published_works[0].cover_art_url" *ngIf="item.published_works[0].cover_art_url != 'N/A'" />
+      </ion-avatar>
+      <ion-label text-wrap>
+        <h3>{{item.title}}</h3>
+         {{item.authors}} 
+      </ion-label>
+      </ion-item>
+    </ion-list>
+</ion-content>
