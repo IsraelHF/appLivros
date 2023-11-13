@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar [(ngModel)]="searchTitle" (ionChange)="search()" placeholder="Título"></ion-searchbar>
+  <ion-searchbar [(ngModel)]="searchTitle" (ionChange)="search()" placeholder="Título"></ion-searchbar> 
   <!-- <ion-searchbar [(ngModel)]="searchAuthor" (ionChange)="search()"></ion-searchbar> -->
 
   <ion-list>
@@ -16,7 +16,7 @@
             allign="middle" />
 
           <ion-card-header>
-            <ion-card-title>{{item.title}}</ion-card-title>
+            <ion-card-title text-wrap>{{item.title}}</ion-card-title>
             <ion-card-subtitle>{{item.authors}}</ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>

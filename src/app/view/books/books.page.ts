@@ -22,6 +22,6 @@ export class BooksPage implements OnInit {
   ngOnInit() {}
 
   search(){
-    this.result = this.bookService.searchBooks(this.searchTitle, this.searchAuthor, this.bookType, this.category, this.lexileMin, this.lexileMax, this.page).pipe(map((results) =>  results['results']));
+    this.result = this.bookService.searchByTitle(this.searchTitle).pipe(map((results) =>  results['results']));
   }
 }
