@@ -18,7 +18,15 @@ const routes: Routes = [
   {
     path: 'book-details',
     loadChildren: () => import('./view/book-details/book-details.module').then( m => m.BookDetailsPageModule)
+  },  {
+    path: 'books-by-title',
+    loadChildren: () => import('./view/books-by-title/books-by-title.module').then( m => m.BooksByTitlePageModule)
   },
+  {
+    path: 'books-by-author',
+    loadChildren: () => import('./view/books-by-author/books-by-author.module').then( m => m.BooksByAuthorPageModule)
+  },
+
 ];
 
 @NgModule({

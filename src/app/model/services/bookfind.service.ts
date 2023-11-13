@@ -9,7 +9,7 @@ export enum BookCategory {
   gl = 'General Literature',
   hpo = 'Hobbies, Sports & Outdoors',
   sff = 'Science Fiction & Fantasy',
-  rf = ' Real Life',
+  RealLife = 'Real Life',
   st = 'Science & Technology',
   ms = 'Mistery & Suspense',
   ref = 'Reference',
@@ -31,13 +31,13 @@ export class BookfindService {
 
   constructor(private http: HttpClient) {}
 
-  searchByTitle(title: string): Observable<any> {
+  searchByTitle(title: string, category : BookCategory): Observable<any> {
     const headers = new HttpHeaders({
       'X-RapidAPI-Key': this.apiKey,
       'X-RapidAPI-Host': this.host,
     });
 
-    const url = `${this.baseUrl}?title=${encodeURI(title)}`;
+    const url = `${this.baseUrl}?title=${encodeURI(title)}&categories=${encodeURI(category)}`;
     return this.http.get(url, { headers });
   }
 

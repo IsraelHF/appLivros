@@ -10,10 +10,6 @@ import { BookCategory, BookType, BookfindService } from 'src/app/model/services/
 export class BooksPage implements OnInit {
   result!: Observable<any>;
   searchTitle: string = '';
-  searchAuthor: string = '';
-  lexileMin : number = 600;
-  lexileMax :number = 800;
-  page : number = 1;
   category: BookCategory = BookCategory.all;
   bookType : BookType = BookType.fic;
 
@@ -22,6 +18,6 @@ export class BooksPage implements OnInit {
   ngOnInit() {}
 
   search(){
-    this.result = this.bookService.searchByTitle(this.searchTitle).pipe(map((results) =>  results['results']));
+    this.result = this.bookService.searchByTitle(this.searchTitle, this.category).pipe(map((results) =>  results['results']));
   }
 }

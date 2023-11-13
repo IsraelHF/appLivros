@@ -5,8 +5,24 @@
 </ion-header>
 
 <ion-content>
-  <ion-searchbar [(ngModel)]="searchTitle" (ionChange)="search()" placeholder="Título"></ion-searchbar> 
+  <ion-searchbar [(ngModel)]="searchTitle" (ionChange)="search()" placeholder="Título"></ion-searchbar>
   <!-- <ion-searchbar [(ngModel)]="searchAuthor" (ionChange)="search()"></ion-searchbar> -->
+
+  <ion-item>
+    <ion-label> Select the category</ion-label>
+    <ion-select [(ngModel)]="category" (ionChange)="search()" placeholder="Categoria">
+      <ion-select-option value="">All</ion-select-option>
+      <ion-select-option value="Art, Creativity & Music">Animals, Bugs & Pets</ion-select-option>
+      <ion-select-option value="Art, Creativity & Music">Art, Creativity & Music</ion-select-option>
+      <ion-select-option value="General Literature">General Literature</ion-select-option>
+      <ion-select-option value="Hobbies, Sports & Outdoors">Hobbies, Sports & Outdoors</ion-select-option>
+      <ion-select-option value="Science Fiction & Fantasy">Science Fiction & Fantasy</ion-select-option>
+      <ion-select-option value="Real Life"> Real Life</ion-select-option>
+      <ion-select-option value="Science & Technology">Science & Technology</ion-select-option>
+      <ion-select-option value="Mystery & Suspense">Mystery & Suspense</ion-select-option>
+      <ion-select-option value="Reference">Reference</ion-select-option>
+    </ion-select>
+  </ion-item>
 
   <ion-list>
     <ion-item *ngFor="let item of (result | async)">
@@ -21,8 +37,8 @@
           </ion-card-header>
           <ion-card-content>
             <ion-list *ngFor="let category of item.categories">
-             {{category}}
-            </ion-list> 
+              {{category}}
+            </ion-list>
           </ion-card-content>
         </ion-card>
       </ion-item-divider>
