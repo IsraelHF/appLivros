@@ -30,7 +30,7 @@
     <ion-grid>
       <ion-row>
         <ion-col size="6" size-md="4" size-lg="3" *ngFor="let item of (result | async)">
-          <ion-card button class="book-card">
+          <ion-card button class="book-card" [routerLink]="['/', 'book-details']">
             <img class="book-cover" [src]="item.published_works[0].cover_art_url"
               *ngIf="item.published_works[0].cover_art_url != 'N/A'" allign="middle" />
             <ion-card-header>
