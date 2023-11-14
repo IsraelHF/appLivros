@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable , map} from 'rxjs';
-import { BookCategory, BookType, BookfindService } from 'src/app/model/services/bookfind.service';
+import { BookType, BookfindService } from 'src/app/model/services/bookfind.service';
 
 @Component({
   selector: 'app-books',
@@ -10,7 +10,8 @@ import { BookCategory, BookType, BookfindService } from 'src/app/model/services/
 export class BooksPage implements OnInit {
   result!: Observable<any>;
   searchTitle: string = '';
-  category: BookCategory = BookCategory.all;
+  //category: BookCategory = BookCategory.all;
+  category: string = '';
   bookType : BookType = BookType.fic;
 
   constructor(private bookService : BookfindService) {}

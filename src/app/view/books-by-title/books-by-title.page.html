@@ -1,35 +1,50 @@
-<!-- <ion-header>
+<ion-header>
   <ion-toolbar>
     <ion-title>Lista de Livros</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-searchbar [(ngModel)]="searchTitle" (ionChange)="search()" placeholder="Título"></ion-searchbar> 
-   <ion-searchbar [(ngModel)]="searchAuthor" (ionChange)="search()"></ion-searchbar> -->
+  <ion-searchbar [(ngModel)]="searchTitle" (ionChange)="search()" placeholder="Título"></ion-searchbar>
+  <!-- <ion-searchbar [(ngModel)]="searchAuthor" (ionChange)="search()"></ion-searchbar> -->
 
-  <!--<ion-list>
-    <ion-item *ngFor="let item of (result | async)">
-      <ion-item-divider>
-        <ion-card slot="start">
-          <img [src]="item.published_works[0].cover_art_url" *ngIf="item.published_works[0].cover_art_url != 'N/A'"
-            allign="middle" />
+  <ion-item>
+    <ion-label> Select the category</ion-label>
+    <ion-select [(ngModel)]="category" (ionChange)="search()" label="Category">
+      <ion-select-option value="">All</ion-select-option>
+      <ion-select-option value="Animals, Bugs & Pets">Animals, Bugs & Pets</ion-select-option>
+      <ion-select-option value="Art, Creativity & Music">Art, Creativity & Music</ion-select-option>
+      <ion-select-option value="General Literature">General Literature</ion-select-option>
+      <ion-select-option value="Hobbies, Sports & Outdoors">Hobbies, Sports & Outdoors</ion-select-option>
+      <ion-select-option value="Science Fiction & Fantasy">Science Fiction & Fantasy</ion-select-option>
+      <ion-select-option value="Real Life"> Real Life</ion-select-option>
+      <ion-select-option value="Science & Technology">Science & Technology</ion-select-option>
+      <ion-select-option value="Mystery & Suspense">Mystery & Suspense</ion-select-option>
+      <ion-select-option value="Reference">Reference</ion-select-option>
+    </ion-select>
+  </ion-item>
 
-          <ion-card-header>
-            <ion-card-title text-wrap>{{item.title}}</ion-card-title>
-            <ion-card-subtitle>{{item.authors}}</ion-card-subtitle>
-          </ion-card-header>
-          <ion-card-content>
-            <ion-list *ngFor="let category of item.categories">
-             {{category}}
-            </ion-list> 
-          </ion-card-content>
-        </ion-card>
-      </ion-item-divider>
-      <!--<ion-label text-wrap> 
-        <h3>{{item.title}}</h3>
-         {{item.authors}} 
-      </ion-label>-->
-    <!--</ion-item>
+
+
+  <ion-list class="cards-container">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6" size-md="4" size-lg="3" *ngFor="let item of (result | async)">
+          <ion-card button class="book-card" [routerLink]="['/', 'book-details']">
+            <img class="book-cover" [src]="item.published_works[0].cover_art_url"
+              *ngIf="item.published_works[0].cover_art_url != 'N/A'" allign="middle" />
+            <ion-card-header>
+              <ion-card-title class="book-title">{{ item.title }}</ion-card-title>
+              <ion-card-subtitle class="book-subtitle">{{ item.authors }}</ion-card-subtitle>
+            </ion-card-header>
+            <!-- <ion-card-content>
+              <ion-list *ngFor="let category of item.categories">
+                {{ category }}
+              </ion-list>
+            </ion-card-content> -->
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-list>
-</ion-content> -->
+</ion-content>

@@ -2,18 +2,18 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-export enum BookCategory {
-  all = '',
-  abp = 'Animals, Bugs & Pets',
-  acm = 'Art, Creativity & Music',
-  gl = 'General Literature',
-  hpo = 'Hobbies, Sports & Outdoors',
-  sff = 'Science Fiction & Fantasy',
-  RealLife = 'Real Life',
-  st = 'Science & Technology',
-  ms = 'Mistery & Suspense',
-  ref = 'Reference',
-}
+// export enum BookCategory {
+//   all = '',
+//   abp = 'Animals, Bugs & Pets',
+//   acm = 'Art, Creativity & Music',
+//   gl = 'General Literature',
+//   hpo = 'Hobbies, Sports & Outdoors',
+//   sff = 'Science Fiction & Fantasy',
+//   RealLife = 'Real Life',
+//   st = 'Science & Technology',
+//   ms = 'Mistery & Suspense',
+//   ref = 'Reference',
+// }
 
 export enum BookType {
   all = '',
@@ -31,33 +31,35 @@ export class BookfindService {
 
   constructor(private http: HttpClient) {}
 
-  searchByTitle(title: string, category : BookCategory): Observable<any> {
+  searchByTitle(title: string, category: string): Observable<any> {
     const headers = new HttpHeaders({
       'X-RapidAPI-Key': this.apiKey,
       'X-RapidAPI-Host': this.host,
     });
 
-    const url = `${this.baseUrl}?title=${encodeURI(title)}&categories=${encodeURI(category)}`;
+    const url = `${this.baseUrl}?title=${encodeURIComponent(
+      title
+    )}&categories=${encodeURIComponent(category)}`;
     return this.http.get(url, { headers });
   }
 
-  searchByAuthor(author: string): Observable<any> {
+  searchByAuthor(author: string, category: string): Observable<any> {
     const headers = new HttpHeaders({
       'X-RapidAPI-Key': this.apiKey,
       'X-RapidAPI-Host': this.host,
     });
 
-    const url = `${this.baseUrl}?author=${encodeURI(author)}`;
+    const url = `${this.baseUrl}?author=${encodeURIComponent(author)}&categories=${encodeURIComponent(category)}`;
     return this.http.get(url, { headers });
   }
 
-  searchByCategory(category: BookCategory): Observable<any> {
-    const headers = new HttpHeaders({
-      'X-RapidAPI-Key': this.apiKey,
-      'X-RapidAPI-Host': this.host,
-    });
+  // searchByCategory(category: BookCategory): Observable<any> {
+  //   const headers = new HttpHeaders({
+  //     'X-RapidAPI-Key': this.apiKey,
+  //     'X-RapidAPI-Host': this.host,
+  //   });
 
-    const url = `${this.baseUrl}?category=${encodeURI(category)}`;
-    return this.http.get(url, { headers });
-  }
+  //   const url = `${this.baseUrl}?category=${encodeURI(category)}`;
+  //   return this.http.get(url, { headers });
+  // }
 }

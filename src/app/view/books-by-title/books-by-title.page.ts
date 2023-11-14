@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, map } from 'rxjs';
+import {
+  BookType,
+  BookfindService,
+} from 'src/app/model/services/bookfind.service';
 
 @Component({
   selector: 'app-books-by-title',
@@ -6,10 +11,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./books-by-title.page.scss'],
 })
 export class BooksByTitlePage implements OnInit {
+  result!: Observable<any>;
+  searchTitle: string = '';
+  //category: BookCategory = BookCategory.all;
+  category: string = '';
+  bookType: BookType = BookType.fic;
 
-  constructor() { }
+  constructor(private bookService: BookfindService) {}
 
-  ngOnInit() {
+  ngOnInit() {}
+
+  search() {
+    this.result = this.bookService
+      .searchByTitle(this.searchTitle, this.category)
+      .pipe(map((results) => results['results']));
   }
-
 }
