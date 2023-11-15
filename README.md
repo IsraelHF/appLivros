@@ -1,9 +1,9 @@
-<h1 align="center">Welcome to App Book Finder 👋</h1>
+<h1 align="center">App Book Finder</h1>
 <p>
   <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
 </p>
 
-> Um app mobile desenvolvido com Ionic, fazendo uso de uma API de busca de livros
+> Um app mobile desenvolvido com Ionic, fazendo uso de uma API de busca de livros. A API se encontra no no seguinte link: https://rapidapi.com/dfskGT/api/book-finder1/
 
 ### 🏠 [Homepage](https://ionicframework.com/)
 
@@ -25,15 +25,15 @@ npm run start
 npm run test
 ```
 
-## Author
+## Authors
 
 👤 **Cauby Jeth Giacomini Junior e Israel Henrique Ferreira**
 
 * Github: [@IsraelHF](https://github.com/IsraelHF)
+* GIthub: [@zShido](https://github.com/zShido)
 
 ## Show your support
 
 Give a ⭐️ if this project helped you!
 
 ***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
