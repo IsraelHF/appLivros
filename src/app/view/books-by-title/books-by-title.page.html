@@ -1,15 +1,14 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Lista de Livros</ion-title>
+    <ion-back-button defaultHref="/home" slot="start" text=""></ion-back-button>
+    <ion-title>Books by Title</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-searchbar [(ngModel)]="searchTitle" (ionChange)="search()" placeholder="Título"></ion-searchbar>
-  <!-- <ion-searchbar [(ngModel)]="searchAuthor" (ionChange)="search()"></ion-searchbar> -->
+  <ion-searchbar [(ngModel)]="searchTitle" (ionChange)="search()" placeholder="Title"></ion-searchbar>
 
   <ion-item>
-    <ion-label> Select the category</ion-label>
     <ion-select [(ngModel)]="category" (ionChange)="search()" label="Category">
       <ion-select-option value="">All</ion-select-option>
       <ion-select-option value="Animals, Bugs & Pets">Animals, Bugs & Pets</ion-select-option>
@@ -26,25 +25,22 @@
 
 
 
-  <ion-list class="cards-container">
-    <ion-grid>
-      <ion-row>
-        <ion-col size="6" size-md="4" size-lg="3" *ngFor="let item of (result | async)">
-          <ion-card button class="book-card" [routerLink]="['/', 'book-details']">
-            <img class="book-cover" [src]="item.published_works[0].cover_art_url"
-              *ngIf="item.published_works[0].cover_art_url != 'N/A'" allign="middle" />
-            <ion-card-header>
-              <ion-card-title class="book-title">{{ item.title }}</ion-card-title>
-              <ion-card-subtitle class="book-subtitle">{{ item.authors }}</ion-card-subtitle>
-            </ion-card-header>
-            <!-- <ion-card-content>
-              <ion-list *ngFor="let category of item.categories">
-                {{ category }}
-              </ion-list>
-            </ion-card-content> -->
-          </ion-card>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
+  <ion-list>
+    <ion-item *ngFor="let item of (result | async)">
+      <ion-card color="light">
+        <img [src]="item.published_works[0].cover_art_url" *ngIf="item.published_works[0].cover_art_url != 'null'"
+          allign="middle" />
+        <ion-card-header>
+          <ion-card-title>{{item.title}}</ion-card-title>
+          <ion-card-subtitle>{{item.authors}}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <p class="text-muted" *ngFor="let category of item.categories">{{category}}</p>
+          <p class="text-muted" *ngIf="item.page_count != null"> {{item.page_count}} pages</p>
+          <p class="summary">Summary</p>
+          <p class="content-summary">{{item.summary}} </p>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
   </ion-list>
 </ion-content>

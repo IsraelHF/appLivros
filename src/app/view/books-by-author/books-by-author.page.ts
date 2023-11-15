@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, map } from 'rxjs';
-import {
-  BookType,
-  BookfindService,
-} from 'src/app/model/services/bookfind.service';
+import { BookfindService } from 'src/app/model/services/bookfind.service';
 
 @Component({
   selector: 'app-books-by-author',
@@ -13,17 +10,22 @@ import {
 export class BooksByAuthorPage implements OnInit {
   result!: Observable<any>;
   searchAuthor: string = '';
-  //category: BookCategory = BookCategory.all;
   category: string = '';
-  bookType: BookType = BookType.fic;
+  results_per_page: number = 50;
 
   constructor(private bookService: BookfindService) {}
 
   ngOnInit() {}
 
   search() {
-    this.result = this.bookService
-      .searchByAuthor(this.searchAuthor, this.category)
-      .pipe(map((results) => results['results']));
+    if (!this.searchAuthor) {
+      this.result = this.bookService
+        .searchByCategory(this.category)
+        .pipe(map((results) => results['results']));
+    } else {
+      this.result = this.bookService
+        .searchByAuthor(this.searchAuthor, this.category, this.results_per_page)
+        .pipe(map((results) => results['results']));
+    }
   }
 }
