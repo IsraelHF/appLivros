@@ -3,7 +3,7 @@
   <img alt="Version" src="https://img.shields.io/badge/version-0.0.1-blue.svg?cacheSeconds=2592000" />
 </p>
 
-> Um app mobile desenvolvido com Ionic, fazendo uso de uma API de busca de livros. A API se encontra no no seguinte link: https://rapidapi.com/dfskGT/api/book-finder1/
+> Um app mobile desenvolvido com Ionic, fazendo uso de uma API de busca de livros. A API se encontra no seguinte link: https://rapidapi.com/dfskGT/api/book-finder1/
 
 ### 🏠 [Homepage](https://ionicframework.com/)
 
