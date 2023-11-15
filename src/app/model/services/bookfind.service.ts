@@ -2,25 +2,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-export enum BookCategory {
-  all = '',
-  abp = 'Animals, Bugs & Pets',
-  acm = 'Art, Creativity & Music',
-  gl = 'General Literature',
-  hpo = 'Hobbies, Sports & Outdoors',
-  sff = 'Science Fiction & Fantasy',
-  rf = ' Real Life',
-  st = 'Science & Technology',
-  ms = 'Mistery & Suspense',
-  ref = 'Reference',
-}
-
-export enum BookType {
-  all = '',
-  fic = 'Fiction',
-  nfic = 'Nonfiction',
-}
-
 @Injectable({
   providedIn: 'root',
 })
@@ -31,33 +12,50 @@ export class BookfindService {
 
   constructor(private http: HttpClient) {}
 
-  searchByTitle(title: string): Observable<any> {
+  searchByTitle(
+    title: string,
+    category: string,
+    results_per_page: number
+  ): Observable<any> {
     const headers = new HttpHeaders({
       'X-RapidAPI-Key': this.apiKey,
       'X-RapidAPI-Host': this.host,
     });
 
-    const url = `${this.baseUrl}?title=${encodeURI(title)}`;
+    const url = `${this.baseUrl}?title=${encodeURIComponent(
+      title
+    )}&categories=${encodeURIComponent(
+      category
+    )}&results_per_page=${results_per_page}`;
+
     return this.http.get(url, { headers });
   }
 
-  searchByAuthor(author: string): Observable<any> {
+  searchByAuthor(
+    author: string,
+    category: string,
+    results_per_page: number
+  ): Observable<any> {
     const headers = new HttpHeaders({
       'X-RapidAPI-Key': this.apiKey,
       'X-RapidAPI-Host': this.host,
     });
 
-    const url = `${this.baseUrl}?author=${encodeURI(author)}`;
+    const url = `${this.baseUrl}?author=${encodeURIComponent(
+      author
+    )}&categories=${encodeURIComponent(
+      category
+    )}&results_per_page=${results_per_page}`;
     return this.http.get(url, { headers });
   }
 
-  searchByCategory(category: BookCategory): Observable<any> {
+  searchByCategory(category: string): Observable<any> {
     const headers = new HttpHeaders({
       'X-RapidAPI-Key': this.apiKey,
       'X-RapidAPI-Host': this.host,
     });
 
-    const url = `${this.baseUrl}?category=${encodeURI(category)}`;
+    const url = `${this.baseUrl}?categories=${encodeURIComponent(category)}`;
     return this.http.get(url, { headers });
   }
 }
